@@ -1,19 +1,22 @@
-#include <string>
-// skapa classer för sensorerna för 2 st. En för temperatur och en för luftfuktighet.
-// Om jag vill göra en till, vindhastighet.
+#include "sensor.h"
+#include <cstdlib>
 
-
-class Sensor {
-public:
-	std::string enhet;
-	double simuleringsintervall;
-	std::string namn;
-	double read();
-	double minValue;
-	double maxValue;
-};
+//
+Sensor::Sensor(std::string inputUnit,
+    std::string inputName,
+    double inputMin,
+    double inputMax)
+{
+    unit = inputUnit;
+    name = inputName;
+    minValue = inputMin;
+    maxValue = inputMax;
+}
 
 double Sensor::read() {
-
-	return minValue;
+    //Detta ger oss ett nogorlunda random värde inom vårt intervall
+    int range = maxValue - minValue + 1;
+    int num = std::rand() % range + minValue;
+    return num;
 }
+
