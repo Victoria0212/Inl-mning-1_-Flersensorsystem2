@@ -35,5 +35,11 @@
     <ClInclude Include="sensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="measurement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="storage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

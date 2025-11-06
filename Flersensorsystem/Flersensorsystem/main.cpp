@@ -15,4 +15,4 @@ int main()
 	std::cout << temperature.read();
 	std::cout << "\n";
 	std::cout << humidity.read();
-}
+} 

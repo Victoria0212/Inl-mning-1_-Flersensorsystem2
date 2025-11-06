@@ -14,7 +14,7 @@ Sensor::Sensor(std::string inputUnit,
 }
 
 double Sensor::read() {
-    //Detta ger oss ett nogorlunda random värde inom vårt intervall
+    //Detta ger oss ett någorlunda random värde inom vårt intervall
     int range = maxValue - minValue + 1;
     int num = std::rand() % range + minValue;
     return num;
