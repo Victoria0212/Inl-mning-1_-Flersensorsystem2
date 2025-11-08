@@ -1,5 +1,7 @@
 #include <iostream>
 #include "sensor.h"
+#include "storage.h"
+#include "measurement.h"
 
 int main()
 {
@@ -8,11 +10,15 @@ int main()
 	Sensor humidity("%", "humiditySensor", 0, 80);
 
 	// Kalla på read()
-	std::cout << temperature.read();
-	std::cout << "\n";
-	std::cout << temperature.read();
-	std::cout << "\n";
-	std::cout << temperature.read();
-	std::cout << "\n";
-	std::cout << humidity.read();
+	temperature.read();
+	temperature.read();
+	temperature.read();
+	temperature.read();
+	temperature.read();
+	temperature.read();
+	temperature.read();
+	temperature.read();
+	
+
+	humidity.read();
 } 
