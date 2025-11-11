@@ -16,6 +16,7 @@ public:
 
 	//Skriver ut alla mätningar
     void printAll();
+	void printStatistics();
 
 	void saveAllToFile(std::string filename);
 

@@ -44,19 +44,15 @@ int main()
 			std::cout << "Nya mätvärden inlästa\n";
 			break;
 		case 2:
-			std::cout << temperature.storage.averageValue;
-			std::cout << temperature.storage.maxValue;
-			std::cout << temperature.storage.minValue;
-			std::cout << temperature.storage.numberOfMeasurement;
-			std::cout << temperature.storage.standardDeviation;
-			std::cout << humidity.storage.averageValue;
-			std::cout << humidity.storage.maxValue;
-			std::cout << humidity.storage.minValue;
-			std::cout << humidity.storage.numberOfMeasurement;
-			std::cout << humidity.storage.standardDeviation;
+			std::cout << "Temperature:" << std::endl;
+			temperature.storage.printStatistics();
+			std::cout << "Humidity:" << std::endl;
+			humidity.storage.printStatistics();
 			break;
 		case 3:
+			std::cout << "Temperature:" << std::endl;
 			temperature.storage.printAll();
+			std::cout << "Humidity:" << std::endl;
 			humidity.storage.printAll();
 			break;
 		case 4:
@@ -67,10 +63,9 @@ int main()
 			temperature.storage.readFromFile("temperature");
 			humidity.storage.readFromFile("humidity");
 			break;
+		case 6:
+			runMenu = false;
+			break;
 		}
-
 	}
-
-	// Kalla på read()
-	temperature.read();
 }

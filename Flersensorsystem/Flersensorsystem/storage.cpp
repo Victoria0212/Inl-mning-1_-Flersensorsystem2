@@ -36,27 +36,31 @@ void MeasurementStorage::addMeasurement(const Measurement& measurement) {
 	}
 	var /= numberOfMeasurement;
 	standardDeviation = sqrt(var);
-
-
-	//std::cout 
-	//	<< std::setprecision(4)
-	//	<< "\n Mätvärde: " << measurement.value
-	//	<< "\n Antal mätvärden: " << numberOfMeasurement
-	//	<< "\n Medelvärde: " << averageValue;
 }
 
 void MeasurementStorage::printAll() {
 	for (auto m : measurements) {
-		std::cout << m.name << std::endl << m.unit << std::endl << m.value << std::endl << m.timeStamp << std::endl;
+		std::cout << "Name: " << m.name << std::endl
+			<< "Enhet: " << m.unit << std::endl
+			<< "Värde: " << m.value << std::endl
+			<< "Tidsstämpel: " << m.timeStamp << std::endl;
 	}
 }
+void MeasurementStorage::printStatistics() {
+	std::cout << "Medelvärde: " << averageValue << std::endl;
+	std::cout << "Maxvärde: " << maxValue << std::endl;
+	std::cout << "Minvärde: " << minValue << std::endl;
+	std::cout << "Antal mätvärden: " << numberOfMeasurement << std::endl;
+	std::cout << "Standardavvikelse: " << standardDeviation << std::endl;
+}
+
 void MeasurementStorage::saveAllToFile(std::string filename) {
 	std::ofstream file(filename + ".csv");
 
-	// Read the input
+	// Läs in inmatning
 	for (auto m : measurements) {
 
-		// Insert the data to file
+		// Skriv in datan till filen
 		file << m.name << ","
 			<< m.unit << ","
 			<< m.value << ","
