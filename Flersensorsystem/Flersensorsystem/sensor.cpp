@@ -3,6 +3,9 @@
 #include "measurement.h"
 #include <ctime>
 #include <iostream>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 #include "storage.h"
 
 //
@@ -29,13 +32,15 @@ double Sensor::read() {
     m1.name = name;
     m1.unit = unit;
     m1.value = num;
+
     //Skapar ett timestamp
-    time_t ts = time(0);
-    struct tm datetime;
-    localtime_s(&datetime, &ts);
-    std::string time = std::to_string(datetime.tm_hour) + ":" + std::to_string(datetime.tm_min) + ":" + std::to_string(datetime.tm_sec);
-    
-    m1.timeStamp = time;
+    std::time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    tm tm;
+    localtime_s(&tm, &t);
+    std::ostringstream oss;
+    oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+    std::string timestamp = oss.str();
+    m1.timeStamp = timestamp;
 
     //anrop till funktionen
     storage.addMeasurement(m1);

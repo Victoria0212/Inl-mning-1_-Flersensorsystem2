@@ -47,11 +47,11 @@ void MeasurementStorage::printAll() {
 	}
 }
 void MeasurementStorage::printStatistics() {
-	std::cout << "Medelvärde: " << averageValue << std::endl;
+	std::cout << "Medelvärde: " << std::setprecision(2) << averageValue << std::endl;
 	std::cout << "Maxvärde: " << maxValue << std::endl;
 	std::cout << "Minvärde: " << minValue << std::endl;
 	std::cout << "Antal mätvärden: " << numberOfMeasurement << std::endl;
-	std::cout << "Standardavvikelse: " << standardDeviation << std::endl;
+	std::cout << "Standardavvikelse: " << std::setprecision(2) << standardDeviation << std::endl;
 }
 
 void MeasurementStorage::saveAllToFile(std::string filename) {
