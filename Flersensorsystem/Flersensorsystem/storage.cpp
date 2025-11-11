@@ -1,6 +1,8 @@
 #include "storage.h"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+#include <sstream>
 
 void MeasurementStorage::addMeasurement(const Measurement& measurement) {
 	measurements.push_back(measurement);
@@ -35,6 +37,7 @@ void MeasurementStorage::addMeasurement(const Measurement& measurement) {
 	var /= numberOfMeasurement;
 	standardDeviation = sqrt(var);
 
+
 	//std::cout 
 	//	<< std::setprecision(4)
 	//	<< "\n Mätvärde: " << measurement.value
@@ -42,3 +45,49 @@ void MeasurementStorage::addMeasurement(const Measurement& measurement) {
 	//	<< "\n Medelvärde: " << averageValue;
 }
 
+void MeasurementStorage::printAll() {
+	for (auto m : measurements) {
+		std::cout << m.name << std::endl << m.unit << std::endl << m.value << std::endl << m.timeStamp << std::endl;
+	}
+}
+void MeasurementStorage::saveAllToFile(std::string filename) {
+	std::ofstream file(filename + ".csv");
+
+	// Read the input
+	for (auto m : measurements) {
+
+		// Insert the data to file
+		file << m.name << ","
+			<< m.unit << ","
+			<< m.value << ","
+			<< m.timeStamp
+			<< "\n";
+	}
+
+	file.close();
+}
+void MeasurementStorage::readFromFile(std::string filename) {
+	std::string text;
+
+	std::ifstream file(filename + ".csv");
+	//Läs filen och skapa en measurement per rad
+	while (getline(file, text)) {
+		std::vector<std::string> values;
+		std::stringstream line(text);
+		std::string value;
+
+		while (getline(line, value, ',')) {
+			values.push_back(value);
+		}
+
+		Measurement m;
+		m.name = values[0];
+		m.unit = values[1];
+		m.value = std::stod(values[2]);
+		m.timeStamp = values[3];
+
+		addMeasurement(m);
+	}
+
+	file.close();
+}

@@ -23,18 +23,17 @@ double Sensor::read() {
     int range = maxValue - minValue + 1;
     int num = std::rand() % range + minValue;
     
-    //Skapa ett measurement
+    //Skapa ett measurement och ge dess attribut värden
     struct Measurement m1;
 
-    // Lägg till ett värde i 
     m1.name = name;
     m1.unit = unit;
     m1.value = num;
-
+    //Skapar ett timestamp
     time_t ts = time(0);
     struct tm datetime;
     localtime_s(&datetime, &ts);
-    std::string time = std::to_string(datetime.tm_hour) + std::to_string(datetime.tm_min) + std::to_string(datetime.tm_sec);
+    std::string time = std::to_string(datetime.tm_hour) + ":" + std::to_string(datetime.tm_min) + ":" + std::to_string(datetime.tm_sec);
     
     m1.timeStamp = time;
 

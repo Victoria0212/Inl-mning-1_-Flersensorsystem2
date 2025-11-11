@@ -17,6 +17,10 @@ public:
 	//Skriver ut alla mätningar
     void printAll();
 
+	void saveAllToFile(std::string filename);
+
+	void readFromFile(std::string filename);
+
 private:
     std::vector<Measurement> measurements; // här sparas allt
 
