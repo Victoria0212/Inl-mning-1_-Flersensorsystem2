@@ -130,7 +130,6 @@
   <ItemGroup>
     <ClCompile Include="HumiditySensor.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="measurement.cpp" />
     <ClCompile Include="PressureSensor.cpp" />
     <ClCompile Include="sensor.cpp" />
     <ClCompile Include="storage.cpp" />
@@ -145,6 +144,7 @@
     <ClInclude Include="storage.h" />
     <ClInclude Include="SystemController.h" />
     <ClInclude Include="TemperatureSensor.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

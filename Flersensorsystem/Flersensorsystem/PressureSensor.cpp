@@ -1,12 +1,9 @@
 #include "PressureSensor.h"
 #include <cstdlib>
 #include "measurement.h"
-#include <ctime>
 #include <iostream>
-#include <chrono>
-#include <iomanip>
-#include <sstream>
 #include "storage.h"
+#include "utils.h"
 
 PressureSensor::PressureSensor(std::string inputName,
     double inputMin,
@@ -39,23 +36,18 @@ double PressureSensor::read() {
     m1.value = num;
 
     //Skapar ett timestamp
-    std::time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-    tm tm;
-    localtime_s(&tm, &t);
-    std::ostringstream oss;
-    oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
-    std::string timestamp = oss.str();
-    m1.timeStamp = timestamp;
-
+    std::string ts = getTimestamp();
+    m1.timeStamp = ts;
     //anrop till funktionen
     _storage.addMeasurement(m1);
 
+    //Check threshold
+    if (_threshold.over == true && num > _threshold.limit) {
+        makeAlarm(_threshold, _name, ts, num);
+    }
+    if (_threshold.over == false && num < _threshold.limit) {
+        makeAlarm(_threshold, _name, ts, num);
+    }
+
     return num;
-}
-void PressureSensor::printStatistics() {
-    std::cout << "Sensor: " << _name << std::endl;
-    _storage.printStatistics();
-}
-void PressureSensor::printAll() { 
-    _storage.printAll();
 }

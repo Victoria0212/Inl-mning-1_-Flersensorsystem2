@@ -1,50 +1,45 @@
-//#include "sensor.h"
-//#include <cstdlib>
-//#include "measurement.h"
-//#include <ctime>
-//#include <iostream>
-//#include <chrono>
-//#include <iomanip>
-//#include <sstream>
-//#include "storage.h"
-//
-//// Skapa konstruktorn
-//Sensor::Sensor(std::string inputUnit,
-//    std::string inputName,
-//    double inputMin,
-//    double inputMax)
-//{
-//    unit = inputUnit;
-//    name = inputName;
-//    minValue = inputMin;
-//    maxValue = inputMax;
-//    storage = MeasurementStorage();
-//}
-//
-//double Sensor::read() {
-//    //Detta ger oss ett någorlunda random värde inom vårt intervall
-//    int range = maxValue - minValue + 1;
-//    int num = std::rand() % range + minValue;
-//    
-//    //Skapa ett measurement och ge dess attribut värden
-//    struct Measurement m1;
-//
-//    m1.name = name;
-//    m1.unit = unit;
-//    m1.value = num;
-//
-//    //Skapar ett timestamp
-//    std::time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-//    tm tm;
-//    localtime_s(&tm, &t);
-//    std::ostringstream oss;
-//    oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
-//    std::string timestamp = oss.str();
-//    m1.timeStamp = timestamp;
-//
-//    //anrop till funktionen
-//    storage.addMeasurement(m1);
-//
-//    return num;
-//}
-//
+#include "sensor.h"
+#include "SystemController.h"
+#include <iostream>
+
+void Sensor::printStatistics() {
+	std::cout << "Sensor: " << name() << std::endl;
+	_storage.printStatistics();
+}
+void Sensor::printAll() {
+	_storage.printAll();
+}
+
+void Sensor::addThreshold(double limit, bool over) {
+	Threshold t;
+	t.limit = limit;
+	t.over = over;
+	t.sensorName = name();
+
+	_threshold = t;
+}
+
+
+void Sensor::makeAlarm(Threshold t, std::string name, std::string timestamp, double value) {
+	struct Alarm alarm;
+	alarm.sensorName = name;
+	alarm.threshold = t;
+	alarm.timeStamp = timestamp;
+	alarm.value = value;
+
+	_alarms.push_back(alarm);
+}
+
+void Sensor::printAlarms() {
+	for (auto a : _alarms) {
+		std::cout << a.sensorName << " Uppmättvärde: " << a.value << "; Gränsvärde: " << a.threshold.limit << "; " << a.timeStamp << std::endl;
+	}
+}
+void Sensor::saveAllToFile()
+{
+	_storage.saveAllToFile(name());
+}
+void Sensor::readFromFile()
+{
+	_storage.readFromFile(name());
+}
