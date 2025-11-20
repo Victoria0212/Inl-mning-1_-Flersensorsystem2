@@ -34,20 +34,23 @@ double HumiditySensor::read() {
     m1.name = _name;
     m1.unit = _unit;
     m1.value = num;
-
+    m1.threshold = "Nej";
     //Skapar ett timestamp
     std::string ts = getTimestamp();
     m1.timeStamp = ts;
-    //anrop till funktionen
-    _storage.addMeasurement(m1);
-
+    
     //Check threshold
     if (_threshold.over == true && num > _threshold.limit) {
         makeAlarm(_threshold, _name, ts, num);
+        m1.threshold = "Ja";
     }
     if (_threshold.over == false && num < _threshold.limit) {
         makeAlarm(_threshold, _name, ts, num);
+        m1.threshold = "Ja";
     }
+
+    //anrop till funktionen
+    _storage.addMeasurement(m1);
 
     return num;
 }

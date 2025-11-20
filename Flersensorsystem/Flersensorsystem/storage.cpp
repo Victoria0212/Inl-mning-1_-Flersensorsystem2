@@ -43,7 +43,8 @@ void MeasurementStorage::printAll() {
 		std::cout << "Name: " << m.name << std::endl
 			<< "Enhet: " << m.unit << std::endl
 			<< "Värde: " << m.value << std::endl
-			<< "Tidsstämpel: " << m.timeStamp << std::endl;
+			<< "Tidsstämpel: " << m.timeStamp << std::endl
+		    << "Tröskel passerat: " << m.threshold << std::endl;
 	}
 }
 void MeasurementStorage::printStatistics() {
@@ -94,4 +95,15 @@ void MeasurementStorage::readFromFile(std::string filename) {
 	}
 
 	file.close();
+}
+void MeasurementStorage::printExceedingMeasurements() {
+	for (auto m : measurements) {
+		if (m.threshold == "Ja") {
+			std::cout << "Name: " << m.name << std::endl
+				<< "Enhet: " << m.unit << std::endl
+				<< "Värde: " << m.value << std::endl
+				<< "Tidsstämpel: " << m.timeStamp << std::endl
+				<< "Tröskel passerat: " << m.threshold << std::endl;
+		}
+	}
 }

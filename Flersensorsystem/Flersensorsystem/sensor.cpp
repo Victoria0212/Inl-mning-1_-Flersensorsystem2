@@ -43,3 +43,6 @@ void Sensor::readFromFile()
 {
 	_storage.readFromFile(name());
 }
+void Sensor::printExceedingMeasurements() {
+	_storage.printExceedingMeasurements();
+}

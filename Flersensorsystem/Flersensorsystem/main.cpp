@@ -30,7 +30,8 @@ int main()
 		std::cout << "5) Visa larm\n";
 		std::cout << "6) Spara alla mätvärden till CSV-fil\n";
 		std::cout << "7) Läs in mätvärden från CSV-fil\n";
-		std::cout << "8) Avsluta\n";
+		std::cout << "8) Visa alla överskridande tröskelvärden\n";
+		std::cout << "9) Avsluta\n";
 		std::cin >> choice;
 
 
@@ -124,8 +125,12 @@ int main()
 			for (auto& s : sensors) {
 				s->readFromFile();
 			} 
-			break;
 		case 8:
+			for (auto& s : sensors) {
+				s->printExceedingMeasurements();
+			}
+			break;
+		case 9:
 			runMenu = false;
 			break;
 		}

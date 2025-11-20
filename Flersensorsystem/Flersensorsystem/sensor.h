@@ -6,7 +6,7 @@
 // Deklarera abstrakta klassen sensor
 class Sensor {
 public:
-	virtual double read() = 0; // virtuell funktion.  Varför gör vi denna virtual? Det är ingen skillnad på read implementationen??
+	virtual double read() = 0; // virtuell funktion.
 	virtual std::string unit() const = 0;
 	virtual std::string name() const = 0;
 
@@ -16,7 +16,7 @@ public:
 	void printAlarms();
 	void saveAllToFile();
 	void readFromFile();
-
+	void printExceedingMeasurements();
 	Sensor() {}
 	virtual ~Sensor() { }// virtuell destruktor	
 

@@ -6,5 +6,6 @@ struct Measurement {
 	std::string name; //som tempSensor
 	std::string unit; //som C, %
 	double value; //uppmätt värde 
-	std::string timeStamp; 
+	std::string timeStamp;
+	std::string threshold;
 };

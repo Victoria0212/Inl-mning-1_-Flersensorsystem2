@@ -21,6 +21,8 @@ public:
 	void saveAllToFile(std::string filename);
 
 	void readFromFile(std::string filename);
+	void printExceedingMeasurements();
+
 
 private:
     std::vector<Measurement> measurements; // här sparas allt
