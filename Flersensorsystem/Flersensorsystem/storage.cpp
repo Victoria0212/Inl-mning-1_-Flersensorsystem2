@@ -42,15 +42,15 @@ void MeasurementStorage::printAll() {
 	for (auto m : measurements) {
 		std::cout << "Name: " << m.name << std::endl
 			<< "Enhet: " << m.unit << std::endl
-			<< "Värde: " << m.value << std::endl
+			<< "Värde: " << std::fixed << std::setprecision(2) << m.value << std::endl
 			<< "Tidsstämpel: " << m.timeStamp << std::endl
 		    << "Tröskel passerat: " << m.threshold << std::endl;
 	}
 }
 void MeasurementStorage::printStatistics() {
-	std::cout << "Medelvärde: " << std::setprecision(2) << averageValue << std::endl;
-	std::cout << "Maxvärde: " << maxValue << std::endl;
-	std::cout << "Minvärde: " << minValue << std::endl;
+	std::cout << "Medelvärde: " << std::fixed << std::setprecision(2) << averageValue << std::endl;
+	std::cout << "Maxvärde: " << std::fixed << maxValue << std::endl;
+	std::cout << "Minvärde: " << std::fixed << minValue << std::endl;
 	std::cout << "Antal mätvärden: " << numberOfMeasurement << std::endl;
 	std::cout << "Standardavvikelse: " << std::setprecision(2) << standardDeviation << std::endl;
 }

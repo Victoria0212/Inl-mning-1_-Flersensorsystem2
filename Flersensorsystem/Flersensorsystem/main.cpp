@@ -15,7 +15,7 @@ int main()
 	//Skapa 3 sensorer och lägg till i listan
 	sensors.push_back(std::make_unique<TemperatureSensor>("tempSensor", 0, 100));
 	sensors.push_back(std::make_unique<HumiditySensor>("humiditySensor", 0, 80));
-	sensors.push_back(std::make_unique<PressureSensor>("pressureSensor", 0, 100));
+	sensors.push_back(std::make_unique<PressureSensor>("pressureSensor", 950, 1050));
 
 	bool runMenu = true;
 	int choice;

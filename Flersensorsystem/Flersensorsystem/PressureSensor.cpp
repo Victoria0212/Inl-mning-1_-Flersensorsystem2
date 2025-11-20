@@ -9,7 +9,7 @@ PressureSensor::PressureSensor(std::string inputName,
     double inputMin,
     double inputMax)
 {
-    _unit = "Pa";
+    _unit = "hPa";
     _name = inputName;
     _minValue = inputMin;
     _maxValue = inputMax;
