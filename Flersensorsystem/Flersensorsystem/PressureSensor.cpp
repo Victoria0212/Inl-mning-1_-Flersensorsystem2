@@ -27,7 +27,7 @@ double PressureSensor::read() {
     //Detta ger oss ett någorlunda random värde inom vårt intervall
     int range = _maxValue - _minValue + 1;
     int num = std::rand() % range + _minValue;
-
+    
     //Skapa ett measurement och ge dess attribut värden
     struct Measurement m1;
 
@@ -39,8 +39,6 @@ double PressureSensor::read() {
     //Skapar ett timestamp
     std::string ts = getTimestamp();
     m1.timeStamp = ts;
-    //anrop till funktionen
-    _storage.addMeasurement(m1);
 
     //Check threshold
     if (_threshold.over == true && num > _threshold.limit) {
@@ -51,6 +49,8 @@ double PressureSensor::read() {
         makeAlarm(_threshold, _name, ts, num);
         m1.threshold = "Ja";
     }
+
+    _storage.addMeasurement(m1);
 
     return num;
 }

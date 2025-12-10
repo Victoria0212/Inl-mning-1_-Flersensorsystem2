@@ -33,7 +33,7 @@ int main()
 		std::cout << "8) Visa alla överskridande tröskelvärden\n";
 		std::cout << "9) Avsluta\n";
 		std::cin >> choice;
-
+		 
 
 		//Hantera fel inmatning
 		if (std::cin.fail()) {
@@ -42,15 +42,15 @@ int main()
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Rensa bufferten
 			continue;
 		}
-		if (choice < 1 || choice > 8) {
-			std::cout << "Felaktigt val. Välj mellan 1-6\n";
+		if (choice < 1 || choice > 9) {
+			std::cout << "Felaktigt val. Välj mellan 1-9\n";
 			continue;
 		}
 
 		double limit;
 		bool over;
 		std::string overStr;
-
+		
 		//Hantera menyval
 		switch (choice) {
 		case 1:

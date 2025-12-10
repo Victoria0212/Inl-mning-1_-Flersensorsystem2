@@ -40,7 +40,7 @@ void MeasurementStorage::addMeasurement(const Measurement& measurement) {
 
 void MeasurementStorage::printAll() {
 	for (auto m : measurements) {
-		std::cout << "Name: " << m.name << std::endl
+		std::cout << "Namn: " << m.name << std::endl
 			<< "Enhet: " << m.unit << std::endl
 			<< "Värde: " << std::fixed << std::setprecision(2) << m.value << std::endl
 			<< "Tidsstämpel: " << m.timeStamp << std::endl
@@ -99,7 +99,7 @@ void MeasurementStorage::readFromFile(std::string filename) {
 void MeasurementStorage::printExceedingMeasurements() {
 	for (auto m : measurements) {
 		if (m.threshold == "Ja") {
-			std::cout << "Name: " << m.name << std::endl
+			std::cout << "Namn: " << m.name << std::endl
 				<< "Enhet: " << m.unit << std::endl
 				<< "Värde: " << m.value << std::endl
 				<< "Tidsstämpel: " << m.timeStamp << std::endl

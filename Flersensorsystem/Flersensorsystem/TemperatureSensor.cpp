@@ -39,8 +39,6 @@ double TemperatureSensor::read() {
     //Skapar ett timestamp
     std::string ts = getTimestamp();
     m1.timeStamp = ts;
-    //anrop till funktionen
-    _storage.addMeasurement(m1);
 
     //Check threshold
     if (_threshold.over == true && num > _threshold.limit) {
@@ -51,6 +49,8 @@ double TemperatureSensor::read() {
         makeAlarm(_threshold, _name, ts, num);
         m1.threshold = "Ja";
     }
+
+    _storage.addMeasurement(m1);
 
     return num;
 }

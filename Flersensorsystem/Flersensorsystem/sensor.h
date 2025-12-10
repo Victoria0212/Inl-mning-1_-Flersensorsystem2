@@ -10,6 +10,7 @@ public:
 	virtual std::string unit() const = 0;
 	virtual std::string name() const = 0;
 
+	//Vi gör inte dessa funktioner virtuella för att dess funktion är oberoende vilket subklass det är. Utförandet i funktionen kommer vara samma.
 	void addThreshold(double limit, bool over);
 	void printStatistics();
 	void printAll();
